@@ -784,9 +784,8 @@ class EclipseJDTLS(SolidLanguageServer):
             }
         )
         assert intellicode_enable_result
-
-        self._service_ready_event.wait()
-        self._project_ready_event.wait()
+        self._service_ready_event.wait(timeout=120)
+        self._project_ready_event.wait(timeout=120)
 
     @override
     def _request_hover(self, uri: str, line: int, column: int) -> ls_types.Hover | None:
